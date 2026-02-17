@@ -39,4 +39,15 @@ app.delete("/students/:id", (req, res) => {
     res.json({ message: "Deleted" });
 });
 
+// GET a student by ID
+app.get("/students/:id", (req, res) => {
+    const id = Number(req.params.id);
+    const student = students.find(s => s.id === id);
+    if (student) {
+        res.json(student);
+    } else {
+        res.status(404).json({ message: "Not found" });
+    }
+});
+
 app.listen(3000, () => console.log("Server running on http://localhost:3000"));
